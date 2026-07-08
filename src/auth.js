@@ -9,6 +9,7 @@ const { normalizeUsername, isValidPassword } = require("./utils");
 
 // In-memory user store: username -> password hash placeholder
 const users = new Map();
+// A fix is placed here
 
 /**
  * Register a new user account.
@@ -26,7 +27,10 @@ function register(username, password) {
 
   if (!isValidPassword(password)) {
     // Branch: feature/improve-password-message
-    return { success: false, message: "Password must contain at least 8 characters" };
+    return {
+      success: false,
+      message: "Password must contain at least 8 characters",
+    };
   }
 
   if (users.has(normalized)) {
