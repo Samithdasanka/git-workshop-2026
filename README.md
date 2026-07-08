@@ -43,6 +43,33 @@ npm start
 npm test
 ```
 
+## Merge conflict demo (pre-built branches)
+
+Two feature branches edit the same lines in `src/auth.js`. Branch 1 is already merged into `main`; branch 2 is waiting to be merged and **will conflict**.
+
+| Branch | Status | What it changes |
+|--------|--------|-----------------|
+| `feature/improve-password-message` | Merged into `main` | Password error + registration success messages |
+| `feature/add-password-hints` | Not merged | Same lines, different wording |
+
+**Live demo — trigger the conflict:**
+
+```bash
+git checkout main
+git merge feature/add-password-hints
+# CONFLICT (content): Merge conflict in src/auth.js
+```
+
+Open `src/auth.js` and resolve the `<<<<<<<`, `=======`, `>>>>>>>` markers, then:
+
+```bash
+git add src/auth.js
+git commit    # completes the merge
+npm test      # verify everything still works
+```
+
+To back out without resolving: `git merge --abort`
+
 ## Workshop exercises
 
 Try these hands-on tasks during the session:
