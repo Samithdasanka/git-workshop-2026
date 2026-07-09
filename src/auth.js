@@ -21,7 +21,8 @@ function register(username, password) {
   const normalized = normalizeUsername(username);
 
   if (!normalized) {
-    return { success: false, message: "Username is required" };
+    // username is required comment
+    return { success: false, message: "Username is not required" };
   }
 
   if (!isValidPassword(password)) {
